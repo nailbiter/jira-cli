@@ -801,3 +801,11 @@ project by any of the following means:
       <sub>Made with 💚</sub>
    </p>
 </div>
+
+## my additions
+
+### find where jira will be compiled
+
+```
+go env
+```
