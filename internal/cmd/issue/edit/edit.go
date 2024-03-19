@@ -59,6 +59,8 @@ func edit(cmd *cobra.Command, args []string) {
 	server := viper.GetString("server")
 	project := viper.GetString("project.key")
 
+	fmt.Print("Hi, there!")
+
 	params := parseArgsAndFlags(cmd.Flags(), args, project)
 	client := api.DefaultClient(params.debug)
 	ec := editCmd{
@@ -163,10 +165,16 @@ func edit(cmd *cobra.Command, args []string) {
 			edr.WithCustomFields(configuredCustomFields)
 		}
 
+		fmt.Print(edr)
+		fmt.Print("hi")
+		cmdutil.Info(fmt.Sprintf("edr %s...", edr))
+		cmdutil.Info("Updating an issue...")
+
 		return client.Edit(params.issueKey, &edr)
 	}()
 	cmdutil.ExitIfError(err)
 
+	fmt.Print("Hell World!")
 	cmdutil.Success("Issue updated\n%s", cmdutil.GenerateServerBrowseURL(server, params.issueKey))
 
 	handleUserAssign(project, params.issueKey, params.assignee, client)

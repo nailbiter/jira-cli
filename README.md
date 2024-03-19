@@ -806,6 +806,12 @@ project by any of the following means:
 
 ### find where jira will be compiled
 
-```
+```sh
 go env
+```
+
+### compile cycle
+
+```sh
+make deps install; ~/go/bin/jira issue edit MNGP-84 --no-input -s 'summary 1'
 ```
