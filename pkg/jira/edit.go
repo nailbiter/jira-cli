@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"fmt"
 )
 
 const separatorMinus = "-"
@@ -42,12 +43,15 @@ func (er *EditRequest) WithCustomFields(cf []IssueTypeField) {
 
 // Edit updates an issue using POST /issue endpoint.
 func (c *Client) Edit(key string, req *EditRequest) error {
+	fmt.Print("hi from Edit()")
 	data := getRequestDataForEdit(req)
 
 	body, err := json.Marshal(&data)
 	if err != nil {
 		return err
 	}
+
+	fmt.Print("hi from Edit")
 
 	res, err := c.PutV2(context.Background(), "/issue/"+key, body, Header{
 		"Accept":       "application/json",
@@ -354,6 +358,8 @@ func getRequestDataForEdit(req *EditRequest) *editRequest {
 }
 
 func constructCustomFieldsForEdit(fields map[string]string, configuredFields []IssueTypeField, data *editRequest) {
+	fmt.Print("hi from constructCustomFieldsForEdit")
+	
 	if len(fields) == 0 || len(configuredFields) == 0 {
 		return
 	}
