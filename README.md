@@ -815,3 +815,11 @@ go env
 ```sh
 make deps install; ~/go/bin/jira issue edit MNGP-84 --no-input -s 'summary 1'
 ```
+
+### debug
+
+#### edit/put
+
+```
+https://nailbiter91.atlassian.net/rest/api/2/issue/MNGP-84 -- {"update":{"customfield_10015":[{"set":"2023-02-11"}],"summary":[{"set":"summary 3"}]},"fields":{"parent":{}}}
+```
